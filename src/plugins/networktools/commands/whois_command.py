@@ -14,7 +14,7 @@ whois_cmd = Alconna(
     Option("-r|--raw", help_text="显示原始WHOIS数据"),  # 选项：显示原始数据
 )
 
-whois_cmd_matcher = on_alconna(whois_cmd)
+whois_cmd_matcher = on_alconna(whois_cmd, use_command_start=True)
 
 @whois_cmd_matcher.handle()
 async def handle_whois(result: Arparma):
@@ -37,7 +37,7 @@ async def handle_whois(result: Arparma):
         msg += f"域名: {domain}"
         if raw_option:
             msg += "\n"
-            msg += "要求显示原始数据,数据可能较长,请注意..."
+            msg += "用户要求显示原始数据,数据可能较长,请注意..."
         await whois_cmd_matcher.send(msg)
 
         # 执行 whois 查询

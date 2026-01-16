@@ -22,7 +22,7 @@ tcping_cmd = Alconna(
     Option("-t|--timeout", Args["timeout", float]),  # 选项：超时
 )
 
-tcping_cmd_matcher = on_alconna(tcping_cmd)
+tcping_cmd_matcher = on_alconna(tcping_cmd, use_command_start=True)
 
 @tcping_cmd_matcher.handle()
 async def handle_tcping_cmd(result: Arparma):

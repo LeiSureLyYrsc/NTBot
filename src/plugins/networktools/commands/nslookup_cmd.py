@@ -15,7 +15,7 @@ nslookup_cmd = Alconna(
     Option("-t|--type", Args["type", str]),  # 选项：记录类型
 )
 
-nslookup_cmd_matcher = on_alconna(nslookup_cmd, aliases=["dnslookup", "dns"])
+nslookup_cmd_matcher = on_alconna(nslookup_cmd, use_command_start=True, aliases=["dnslookup", "dns"])
 
 @nslookup_cmd_matcher.handle()
 async def handle_nslookup_cmd(result: Arparma):

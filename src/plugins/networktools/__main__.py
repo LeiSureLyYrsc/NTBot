@@ -10,7 +10,7 @@ networktools = Alconna(
     ),
 )
 
-nt = on_alconna(networktools)
+nt = on_alconna(networktools, use_command_start=True)
 
 @nt.assign("$main")
 # 主命令处理
