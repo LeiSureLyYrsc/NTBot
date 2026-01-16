@@ -35,14 +35,21 @@ async def handle_whois(result: Arparma):
         msg = "--- WHOIS ---"
         msg += "\n"
         msg += f"域名: {domain}"
+        if raw_option:
+            msg += "\n"
+            msg += "要求显示原始数据,数据可能较长,请注意..."
         await whois_cmd_matcher.send(msg)
 
         # 执行 whois 查询
         whois_result = await whois_query(domain)
 
         # 格式化文本
-        msg = format_whois_result(whois_result, raw_option)
-        await whois_cmd_matcher.finish(msg)
+        msg, raw_msg = format_whois_result(whois_result, raw_option)
+        if raw_msg:
+            await whois_cmd_matcher.send(msg)
+            await whois_cmd_matcher.finish(raw_msg)
+        else:
+            await whois_cmd_matcher.finish(msg)
 
     # 错误处理
     except FinishedException:

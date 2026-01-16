@@ -67,6 +67,9 @@ def format_whois_result(result: Dict, raw_option: bool = False) -> str:
     
     msg = "--- WHOIS ---\n"
     msg += f"域名: {result['domain']}\n\n"
+
+    # 如果有原始数据选项，准备附加文本
+    raw_msg = None
     
     parsed = result.get('parsed_data', {})
     
@@ -90,8 +93,7 @@ def format_whois_result(result: Dict, raw_option: bool = False) -> str:
             msg += f"{i}: {status}\n"
     
     if raw_option and result.get('raw_data'):
-        msg += "\n原始数据:\n"
-        msg += result['raw_data'][:500]
-        msg += "..."
+        raw_msg = "WHOIS 原始数据:\n"
+        raw_msg += result['raw_data']
     
-    return msg
+    return msg, raw_msg
