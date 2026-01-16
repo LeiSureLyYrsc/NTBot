@@ -12,6 +12,7 @@ dependencies = [
     "nonebot-plugin-alconna>=0.60.4",
     "dnspython>=2.8.0",
     "python-whois>=0.9.6",
+    "nonebot-plugin-htmlrender>=0.6.7",
 ]
 
 [tool.nonebot]
@@ -28,3 +29,4 @@ nonebot-adapter-onebot = [
 [tool.nonebot.plugins]
 "@local" = []
 nonebot-plugin-alconna = ["nonebot_plugin_alconna"]
+nonebot-plugin-htmlrender = ["nonebot_plugin_htmlrender"]

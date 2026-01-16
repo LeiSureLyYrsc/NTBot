@@ -97,3 +97,19 @@ def format_whois_result(result: Dict, raw_option: bool = False) -> str:
         raw_msg += result['raw_data']
     
     return msg, raw_msg
+
+def format_webshot_result(result: Dict, width: int, height: int) -> str:
+    """
+    格式化网页截图结果为可读文本
+    """
+    if not result["success"]:
+        msg = "--- 网页截图 ---\n"
+        msg += f"URL: {result['url']}, 宽: {width}, 高: {height}\n"
+        msg += f"错误: {result['error']}"
+        return msg
+    
+    msg = "--- 网页截图 ---\n"
+    msg += f"URL: {result['url']}, 宽: {width}, 高: {height}\n"
+    msg += "截图成功"
+    
+    return msg

@@ -14,7 +14,7 @@ whois_cmd = Alconna(
     Option("-r|--raw", help_text="显示原始WHOIS数据"),  # 选项：显示原始数据
 )
 
-whois_cmd_matcher = on_alconna(whois_cmd, use_command_start=True)
+whois_cmd_matcher = on_alconna(whois_cmd, use_cmd_start=True)
 
 @whois_cmd_matcher.handle()
 async def handle_whois(result: Arparma):
