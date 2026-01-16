@@ -11,6 +11,7 @@ dependencies = [
     "nonebot-adapter-onebot>=2.4.6",
     "nonebot-plugin-alconna>=0.60.4",
     "dnspython>=2.8.0",
+    "python-whois>=0.9.6",
 ]
 
 [tool.nonebot]

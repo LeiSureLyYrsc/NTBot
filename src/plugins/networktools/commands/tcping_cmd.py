@@ -9,7 +9,7 @@ from nonebot_plugin_alconna import on_alconna, Alconna, Args, Option
 from nonebot.exception import FinishedException
 
 from ..func.tcping import tcp_ping, parse_host_port
-from ..func.text_format import format_tcp_ping_result
+from ..func.text_format import format_tcping_result
 
 tcping_cmd = Alconna(
     "tcping",  # 主命令
@@ -111,7 +111,7 @@ async def handle_tcping_cmd(result: Arparma):
         result = await tcp_ping(host, port, count, timeout)
 
         # 格式化文本
-        msg = format_tcp_ping_result(result)
+        msg = format_tcping_result(result)
         await tcping_cmd_matcher.finish(msg)
 
     # 错误处理

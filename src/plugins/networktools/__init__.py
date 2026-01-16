@@ -7,6 +7,7 @@ from .config import Config
 from . import __main__ as __main__
 from .commands import tcping_cmd as tcping_cmd
 from .commands import nslookup_cmd as nslookup_cmd
+from .commands import whois_command as whois_command
 
 __plugin_meta__ = PluginMetadata(
     name="NetworkTools",

@@ -1,6 +1,6 @@
 from typing import Dict
 
-def format_tcp_ping_result(result: Dict) -> str:
+def format_tcping_result(result: Dict) -> str:
     """
     格式化TCP Ping结果为可读文本
     """
@@ -52,5 +52,46 @@ def format_nslookup_result(result: Dict) -> str:
             msg += f"{i}: {record_str}\n"
         else:
             msg += f"{i}: {record}\n"
+    
+    return msg
+
+def format_whois_result(result: Dict, raw_option: bool = False) -> str:
+    """
+    格式化WHOIS查询结果为可读文本
+    """
+    if not result["success"]:
+        msg = "--- WHOIS ---\n"
+        msg += f"域名: {result['domain']}\n"
+        msg += f"错误: {result['error']}"
+        return msg
+    
+    msg = "--- WHOIS ---\n"
+    msg += f"域名: {result['domain']}\n\n"
+    
+    parsed = result.get('parsed_data', {})
+    
+    if parsed.get('registrar'):
+        msg += f"注册商: {parsed['registrar']}\n"
+    if parsed.get('creation_date'):
+        msg += f"创建日期: {parsed['creation_date']}\n"
+    if parsed.get('expiration_date'):
+        msg += f"过期日期: {parsed['expiration_date']}\n"
+    if parsed.get('updated_date'):
+        msg += f"更新日期: {parsed['updated_date']}\n"
+    
+    if parsed.get('name_servers'):
+        msg += "\n域名服务器:\n"
+        for i, ns in enumerate(parsed['name_servers'], 1):
+            msg += f"{i}: {ns}\n"
+    
+    if parsed.get('status'):
+        msg += "\n状态:\n"
+        for i, status in enumerate(parsed['status'], 1):
+            msg += f"{i}: {status}\n"
+    
+    if raw_option and result.get('raw_data'):
+        msg += "\n原始数据:\n"
+        msg += result['raw_data'][:500]
+        msg += "..."
     
     return msg
